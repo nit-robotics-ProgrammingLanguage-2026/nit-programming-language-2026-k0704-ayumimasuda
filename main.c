@@ -1,33 +1,33 @@
 #include <stdio.h>
 
-/* static変数で合計値を保持する関数 */
-int add_to_total(int value)
+/* 偶数の合計を保持する関数 */
+int calculateCumulativeSum(int evenNumber)
 {
-    static int total = 0;
+    /* 関数終了後も値を保持し、次の呼び出しに引き継ぐ */
+    static int cumulativeSum = 0;
 
-    /* 関数終了後も値が保持され、次回呼び出し時に引き継がれる */
-    total += value;
+    cumulativeSum += evenNumber;
 
-    return total;
+    return cumulativeSum;
 }
 
 int main(void)
 {
-    int input_number;
-    int result = 0;
+    int inputNumber;
+    int finalResult = 0;
 
-    scanf("%d", &input_number);
+    scanf("%d", &inputNumber);
 
-    if (input_number < 1 || input_number > 10) {
+    if (inputNumber < 1 || inputNumber > 10) {
         printf("NG");
         return 0;
     }
 
-    for (int current_number = 1; current_number <= input_number; current_number++) {
-        result = add_to_total(current_number * 2);
+    for (int currentValue = 1; currentValue <= inputNumber; currentValue++) {
+        finalResult = calculateCumulativeSum(currentValue * 2);
     }
 
-    printf("%d", result);
+    printf("%d", finalResult);
 
     return 0;
 }
